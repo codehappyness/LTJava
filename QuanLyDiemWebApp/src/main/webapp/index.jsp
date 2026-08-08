@@ -123,6 +123,17 @@ body {
 			<p>Hệ thống quản lý điểm sinh viên</p>
 		</div>
 
+		<%
+			String error = request.getParameter("error");
+			if (error != null) {
+		%>
+			<div style="background-color: rgba(255, 71, 87, 0.9); color: white; padding: 15px; text-align: center; border-radius: 8px; margin-bottom: 30px; font-weight: bold; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+				Bạn không có quyền truy cập trang này! Mã lỗi: <%= error %>)
+			</div>
+		<%
+			}
+		%>
+
 		<div class="nav-grid">
 			<a href="student" class="nav-card">
 				<h3>Quản Lý Sinh Viên</h3>

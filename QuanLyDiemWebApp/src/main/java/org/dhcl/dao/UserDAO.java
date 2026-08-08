@@ -92,7 +92,8 @@ public class UserDAO {
                         rs.getInt("UserID"),
                         rs.getString("Username"),
                         rs.getString("Password"),
-                        rs.getString("Role")
+                        rs.getString("Role"),
+                        rs.getString("email_06130200005")
                     );
                 }
             }

@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-	<%@ page import="java.util.List, org.dhcl.model.Subject" %>
+	<%@ page import="java.util.List, org.dhcl.model.Subject, org.dhcl.model.User" %>
 		<!DOCTYPE html>
 		<html>
 
@@ -64,6 +64,7 @@
 		<body>
 			<div class="container">
 				<h1>Danh Sách Môn Học</h1>
+				<h1>Trương Nam Trung - 06130200005</h1>
 
 				<a href="subject?action=new" class="btn btn-primary">Thêm Môn Học Mới</a>
 				<table>
@@ -71,7 +72,6 @@
 						<tr>
 							<th>Mã Môn</th>
 							<th>Tên Môn</th>
-							<th>Số Tín Chỉ</th>
 							<th>Trạng Thái</th>
 							<th>Hành Động</th>
 						</tr>
@@ -87,9 +87,6 @@
 									</td>
 									<td>
 										<%= s.getSubjectName() %>
-									</td>
-									<td>
-										<%= s.getCredits() %>
 									</td>
 									<td>
 										<%= s.isActive() ? "Đang hoạt động" : "Tạm ngưng" %>

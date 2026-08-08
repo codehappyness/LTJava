@@ -33,8 +33,12 @@ public class AuthFilter implements Filter {
 				String role = user.getRole();
 
 				// Nếu truy cập vào quản lý User mà không phải Admin -> Chặn
-				if (requestURI.contains("/user") && !role.equals("admin")) {
-					response.sendError(HttpServletResponse.SC_FORBIDDEN, "Bạn không có quyền truy cập trang này!");
+				if (requestURI.contains("/user") && !"admin".equalsIgnoreCase(role)) {
+					if ("student".equalsIgnoreCase(role)) {
+						response.sendRedirect(request.getContextPath() + "/index.jsp?error=06130200005");
+					} else {
+						response.sendError(HttpServletResponse.SC_FORBIDDEN, "Bạn không có quyền truy cập trang này!");
+					}
 					return;
 				}
 
