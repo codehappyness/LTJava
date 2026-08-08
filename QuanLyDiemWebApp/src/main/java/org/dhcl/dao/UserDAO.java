@@ -1,6 +1,8 @@
 package org.dhcl.dao;
 
 import org.dhcl.model.User;
+import org.dhcl.util.SecurityUtil;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -77,13 +79,13 @@ public class UserDAO {
         }
     }
 
-    // Hàm kiểm tra đăng nhập (Bonus thêm cho em để dùng sau này)
     public User checkLogin(String username, String password) throws SQLException {
         String sql = "SELECT * FROM Users WHERE Username = ? AND Password = ?";
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, username);
-            stmt.setString(2, password);
+            String encodedPassword = SecurityUtil.hashPassword(password);
+            stmt.setString(2, encodedPassword);
             try (ResultSet rs = stmt.executeQuery()) {
                 if (rs.next()) {
                     return new User(

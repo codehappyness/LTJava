@@ -89,21 +89,21 @@
 					<%-- Kiểm tra để set hidden input action --%>
 						<% if (request.getAttribute("student") !=null) { %>
 							<input type="hidden" name="action" value="update"> <input type="hidden" name="id"
-								value="<%=((Student) request.getAttribute(" student")).getStudentId()%>">
+								value="<%=((Student) request.getAttribute("student")).getStudentId()%>">
 							<% } else { %>
 								<input type="hidden" name="action" value="insert">
 								<% } %>
 
 									<div class="form-group">
 										<label>Họ Tên:</label> <input type="text" name="fullName"
-											value="<%=(request.getAttribute(" student") !=null) ? ((Student)
+											value="<%=(request.getAttribute("student") !=null) ? ((Student)
 											request.getAttribute("student")).getFullName() : "" %>"
 										required>
 									</div>
 
 									<div class="form-group">
 										<label>Lớp:</label> <input type="text" name="className"
-											value="<%=(request.getAttribute(" student") !=null) ? ((Student)
+											value="<%=(request.getAttribute("student") !=null) ? ((Student)
 											request.getAttribute("student")).getClassName() : "" %>"
 										required>
 									</div>

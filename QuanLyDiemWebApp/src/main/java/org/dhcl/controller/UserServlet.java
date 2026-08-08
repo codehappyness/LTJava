@@ -2,6 +2,8 @@ package org.dhcl.controller;
 
 import org.dhcl.dao.UserDAO;
 import org.dhcl.model.User;
+import org.dhcl.util.SecurityUtil;
+
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -72,8 +74,10 @@ public class UserServlet extends HttpServlet {
         String username = request.getParameter("username");
         String password = request.getParameter("password"); // Trong thực tế nên mã hóa ở đây
         String role = request.getParameter("role");
+        
+        String encodedPassword = SecurityUtil.hashPassword(password);
 
-        User newUser = new User(0, username, password, role);
+        User newUser = new User(0, username, encodedPassword, role);
         userDAO.addUser(newUser);
         response.sendRedirect("user");
     }
@@ -85,7 +89,8 @@ public class UserServlet extends HttpServlet {
         String password = request.getParameter("password");
         String role = request.getParameter("role");
 
-        User user = new User(id, username, password, role);
+        String encodedPassword = SecurityUtil.hashPassword(password);
+        User user = new User(id, username, encodedPassword, role);
         userDAO.updateUser(user);
         response.sendRedirect("user");
     }
